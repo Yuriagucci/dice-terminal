@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { Box, Button, Input, FormControl, FormLabel, Heading, Alert, AlertIcon, Link, Flex, Text } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
-import { AddIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 
 function login() {
@@ -26,7 +24,7 @@ function login() {
         localStorage.setItem('diceToken', 'true');
         localStorage.setItem("userId", loginData.userId);
         localStorage.setItem("name", loginData.name);
-        navigate('/dice-roller'); // remove state — you're now using localStorage instead
+        navigate('/dice-roller');
       } else {
         setError(loginData.message || 'Login failed');
       }
@@ -38,27 +36,32 @@ function login() {
   };
 
   return (
-    <Box maxW="md" mx="auto" mt={20} p={8} borderWidth={1} borderRadius={8} boxShadow="lg">
-      <Heading mb={6}>Dice Terminal</Heading>
+    <div style={{ maxWidth: '480px', margin: '80px auto', padding: '32px', border: '1px solid #e2e8f0', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06)' }}>
+      <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '24px' }}>Dice Terminal</h2>
       <form onSubmit={handleLogin}>
-        <FormControl mb={4}>
-          <FormLabel>Email</FormLabel>
-          <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-        </FormControl>
-        <FormControl mb={4}>
-          <FormLabel>Password</FormLabel>
-          <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
-        </FormControl>
-        {error && <Alert status="error" mb={4}><AlertIcon />{error}</Alert>}
-        <Button colorScheme="teal" type="submit" w="full" isLoading={loading}>Login</Button>
+        <div style={{ marginBottom: '16px' }}>
+          <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '8px' }}>Email</label>
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required style={{ display: 'block', width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '4px' }} />
+        </div>
+        <div style={{ marginBottom: '16px' }}>
+          <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '8px' }}>Password</label>
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} required style={{ display: 'block', width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '4px' }} />
+        </div>
+        {error && (
+          <div style={{ marginBottom: '16px', padding: '12px', backgroundColor: '#ffe8e8', borderColor: '#e53e3e', color: '#e53e3e', borderRadius: '4px' }}>
+            {error}
+          </div>
+        )}
+        <button type="submit" disabled={loading} style={{ backgroundColor: '#319795', color: 'white', width: '100%', padding: '12px', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: loading ? 'not-allowed' : 'pointer' }}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
       </form>
-      <Flex mt={6} align="center" justify="center">
-        <AddIcon boxSize={5} color="teal.500" mr={2} />
-        <Link as={RouterLink} to="/register" color="teal.500" fontWeight="bold">
+      <div style={{ display: 'flex', marginTop: '24px', alignItems: 'center', justifyContent: 'center' }}>
+        <a href="/register" style={{ color: '#319795', fontWeight: 'bold', textDecoration: 'none' }}>
           Don't have an account? Register
-        </Link>
-      </Flex>
-    </Box>
+        </a>
+      </div>
+    </div>
   );
 }
 

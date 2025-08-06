@@ -1,6 +1,4 @@
-
 import { useState } from 'react';
-import { Box, Button, Input, FormControl, FormLabel, Heading, Alert, AlertIcon, Link, Flex } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -36,39 +34,70 @@ function Register() {
       }
     } catch (err) {
       setError('Server error. Please try again later.');
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
-    <Box maxW="md" mx="auto" mt={20} p={8} borderWidth={1} borderRadius={8} boxShadow="lg">
-      <Heading mb={6}>Register</Heading>
+    <div style={{ maxWidth: '480px', margin: '80px auto', padding: '32px', border: '1px solid #e2e8f0', borderRadius: '8px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
+      <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '24px' }}>Register</h2>
       <form onSubmit={handleRegister}>
-        <FormControl mb={4}>
-          <FormLabel>Name</FormLabel>
-          <Input type="text" value={name} onChange={e => setName(e.target.value)} required />
-        </FormControl>
-        <FormControl mb={4}>
-          <FormLabel>Email</FormLabel>
-          <Input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-        </FormControl>
-        <FormControl mb={4}>
-          <FormLabel>Password</FormLabel>
-          <Input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
-        </FormControl>
-        {error && <Alert status="error" mb={4}><AlertIcon />{error}</Alert>}
-        {success && <Alert status="success" mb={4}><AlertIcon />{success}</Alert>}
-        <Button colorScheme="teal" type="submit" w="full" isLoading={loading}>
-          Register
-        </Button>
+        <div style={{ marginBottom: '16px' }}>
+          <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '8px' }}>Name</label>
+          <input 
+            type="text" 
+            value={name} 
+            onChange={e => setName(e.target.value)} 
+            required 
+            style={{ display: 'block', width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '4px', boxSizing: 'border-box' }}
+          />
+        </div>
+        <div style={{ marginBottom: '16px' }}>
+          <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '8px' }}>Email</label>
+          <input 
+            type="email" 
+            value={email} 
+            onChange={e => setEmail(e.target.value)} 
+            required 
+            style={{ display: 'block', width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '4px', boxSizing: 'border-box' }}
+          />
+        </div>
+        <div style={{ marginBottom: '16px' }}>
+          <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '8px' }}>Password</label>
+          <input 
+            type="password" 
+            value={password} 
+            onChange={e => setPassword(e.target.value)} 
+            required 
+            style={{ display: 'block', width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '4px', boxSizing: 'border-box' }}
+          />
+        </div>
+        {error && (
+          <div style={{ marginBottom: '16px', padding: '12px', backgroundColor: '#ffe8e8', borderColor: '#e53e3e', color: '#e53e3e', borderRadius: '4px' }}>
+            {error}
+          </div>
+        )}
+        {success && (
+          <div style={{ marginBottom: '16px', padding: '12px', backgroundColor: '#e8fff0', borderColor: '#38a169', color: '#38a169', borderRadius: '4px' }}>
+            {success}
+          </div>
+        )}
+        <button 
+          type="submit" 
+          disabled={loading} 
+          style={{ backgroundColor: '#319795', color: 'white', width: '100%', padding: '12px', border: 'none', borderRadius: '4px', fontWeight: 'bold', cursor: loading ? 'not-allowed' : 'pointer' }}
+        >
+          {loading ? 'Registering...' : 'Register'}
+        </button>
       </form>
-
-      <Flex mt={6} align="center" justify="center">
-        <Link as={RouterLink} to="/" color="teal.500" fontWeight="bold">
+      
+      <div style={{ display: 'flex', marginTop: '24px', alignItems: 'center', justifyContent: 'center' }}>
+        <a href="/" style={{ color: '#319795', fontWeight: 'bold', textDecoration: 'none' }}>
           Sign in
-        </Link>
-      </Flex>
-    </Box>
+        </a>
+      </div>
+    </div>
   );
 }
 
