@@ -1,0 +1,29 @@
+[33mcommit fc3e236c4a75167e13d6d3c3c974a85f234da8f1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Yuriagucci <mokouawesome0028@gmail.com>
+Date:   Mon Aug 11 12:37:52 2025 +0800
+
+    reimplemented roller
+
+[33mcommit ded5a127fa0976470a679e94b6c5734f3b0586db[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Yuriagucci <mokouawesome0028@gmail.com>
+Date:   Thu Aug 7 04:34:54 2025 +0800
+
+    Updated login and register to use basic html
+
+[33mcommit 69c8ff0db88b845a7a1bc78146da00bee3d6d1bb[m
+Author: Yuriagucci <mokouawesome0028@gmail.com>
+Date:   Thu Aug 7 04:16:42 2025 +0800
+
+    Removed chakra ui. now using css
+
+[33mcommit 56781d844db9566a2c7db1610a0e83bde51f1830[m
+Author: Yuriagucci <mokouawesome0028@gmail.com>
+Date:   Thu Aug 7 04:14:28 2025 +0800
+
+    Added a new feature for dice rolling
+
+[33mcommit 2137933b338bbbc80567c3c88ecdbd6b600200bb[m
+Author: Yuriagucci <mokouawesome0028@gmail.com>
+Date:   Thu Aug 7 03:36:34 2025 +0800
+
+    Initial commit

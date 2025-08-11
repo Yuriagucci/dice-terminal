@@ -1,14 +1,7 @@
-// Import the useState hook from React to manage state
-import { useState } from 'react';
-
-// Import the Link component from react-router-dom and rename it to RouterLink
-import { Link as RouterLink } from 'react-router-dom'; 
-
-// Import global CSS styles
-import '../globals.css';
-
-// Import the useNavigate hook for redirecting the user after login
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'; // Import the useState hook from React to manage state
+import '../globals.css'; // Import global CSS styles
+import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook for redirecting the user after login
+import { Link as RouterLink } from 'react-router-dom';  // Import the Link component from react-router-dom and rename it to RouterLink
 
 // Define the login component
 function login() {
@@ -61,63 +54,75 @@ function login() {
     }
   };
 
-  // Render the UI
   return (
-    <div className="max-w-md mx-auto mt-20 p-8 border border-gray-200 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-6">Dice Terminal</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      {/* Card */}
+      <div className="w-full max-w-sm bg-white p-6 rounded-lg shadow border border-gray-200">
+        
+        {/* Title */}
+        <h2 className="text-xl font-semibold text-center mb-5 text-gray-800">
+          Dice Terminal
+        </h2>
 
-      {/* Login Form */}
-      <form onSubmit={handleLogin}>
-        {/* Email Input */}
-        <div className="mb-4">
-          <label className="block font-bold mb-2">Email</label>
-          <input 
-            type="email" 
-            value={email} 
-            onChange={e => setEmail(e.target.value)} // Update email state on input
-            required 
-            className="block w-full p-2 border border-gray-200 rounded-md box-border" 
-          />
-        </div>
-
-        {/* Password Input */}
-        <div className="mb-4">
-          <label className="block font-bold mb-2">Password</label>
-          <input 
-            type="password" 
-            value={password} 
-            onChange={e => setPassword(e.target.value)} // Update password state on input
-            required 
-            className="block w-full p-2 border border-gray-200 rounded-md box-border" 
-          />
-        </div>
-
-        {/* Error message (if any) */}
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 border border-red-500 text-red-500 rounded-md">
-            {error}
+        {/* Form */}
+        <form onSubmit={handleLogin} className="space-y-3">
+          
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+              className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-teal-500 focus:outline-none text-sm"
+            />
           </div>
-        )}
 
-        {/* Submit Button */}
-        <button 
-          type="submit" 
-          disabled={loading} // Disable the button while loading
-          className="bg-teal-500 hover:bg-teal-600 text-white w-full p-3 rounded-md font-bold cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
-        >
-          {/* Change button text depending on loading state */}
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-      </form>
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              className="w-full px-3 py-1.5 border border-gray-300 rounded-md focus:ring-1 focus:ring-teal-500 focus:outline-none text-sm"
+            />
+          </div>
 
-      {/* Link to register page */}
-      <div className="mt-6 flex items-center justify-center">
-        <a href="/register" className="text-teal-500 font-bold hover:underline">
-          Don't have an account? Register
-        </a>
+          {/* Error */}
+          {error && (
+            <div className="p-2 text-xs bg-red-50 border border-red-400 text-red-600 rounded">
+              {error}
+            </div>
+          )}
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-2 bg-teal-500 hover:bg-teal-600 text-white font-medium rounded-md text-sm transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+        </form>
+
+        {/* Register link */}
+        <p className="mt-4 text-center text-xs text-gray-600">
+          No account?{" "}
+          <a href="/register" className="text-teal-500 hover:underline">
+            Register
+          </a>
+        </p>
       </div>
     </div>
   );
+
 }
 
 // Export the component so it can be used in other files
